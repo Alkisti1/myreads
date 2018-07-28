@@ -45,10 +45,10 @@ class BookSearch extends Component {
         if (books.length > 0) {
           books = books.filter((book) => (book.imageLinks))
           books = this.changeBookShelf(books)
-          this.setState(() => {
-            return {Books: books}
-          })
         }
+        this.setState(() => {
+          return {Books: books}
+        })
       })
     } else {
       this.setState({Books: [], query: ''})
@@ -60,6 +60,15 @@ class BookSearch extends Component {
   }
 
   render() {
+    let result;
+    if (this.state.Books.length > 0) {
+      result = this.state.Books.map((book, index) => (<Book book={book} key={index} onUpdate={(shelf) => {
+        this.add_book(book, shelf)
+      }}/>))
+    } else {
+      result = 'No results found';
+    }
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -70,9 +79,7 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.query.length > 0 && this.state.Books.map((book, index) => (<Book book={book} key={index} onUpdate={(shelf) => {
-              this.add_book(book, shelf)
-            }}/>))}
+            {this.state.query.length ? result : ''}
           </ol>
         </div>
       </div>

@@ -5,7 +5,7 @@ import ListBook from './components/BookList'
 import BookSearch from './components/BookSearch'
 import './App.css'
 
-class BooksApp extends Component {
+export default class BooksApp extends Component {
   state = {
     Books: []
   }
@@ -35,5 +35,3 @@ class BooksApp extends Component {
     )
   }
 }
-
-export default BooksApp
