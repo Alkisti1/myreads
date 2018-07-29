@@ -4,12 +4,12 @@ import {Link} from 'react-router-dom'
 import {PropTypes} from 'prop-types'
 
 class ListBook extends Component {
-
+//set propTyped
   static propTypes = {
     books: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired
   }
-
+//display books on shelves
   render() {
     const books = this.props.books
 

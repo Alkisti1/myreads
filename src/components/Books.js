@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import {PropTypes} from 'prop-types'
 
 class Book extends Component {
-
+//propTypes
   static propTypes = {
     book: PropTypes.object.isRequired,
     onUpdate: PropTypes.func.isRequired
   }
-
+//function for updating bookshelf
   change_bookShelf = (e) => {
     this.props.onUpdate(e.target.value)
   }
-
+//render books
   render() {
     const book = this.props.book
     return (

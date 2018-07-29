@@ -4,12 +4,14 @@ import {PropTypes} from 'prop-types'
 
 class BookShelf extends Component {
 
+  //set propTypes
   static propTypes = {
     books: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     onChangeShelf: PropTypes.func.isRequired
   }
 
+  //update book shelf
   update_book = (book, shelf) => {
     this.props.onChangeShelf(book, shelf)
   }

@@ -9,6 +9,7 @@ export default class BooksApp extends Component {
   state = {
     Books: []
   }
+//fetch remote data and set state
 
   componentDidMount() {
     this.fetch_books_details()
@@ -26,6 +27,7 @@ export default class BooksApp extends Component {
     })
   }
 
+  // render links
   render() {
     return (
       <div className="app">

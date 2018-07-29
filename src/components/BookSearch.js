@@ -5,25 +5,29 @@ import {PropTypes} from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 
 class BookSearch extends Component {
+ //set empty state
   state = {
     Books: [],
     query: ''
   }
 
+  //define props
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     myBooks: PropTypes.array.isRequired
   }
 
+  //handle state
   handleChange = (event) => {
     var value = event.target.value
     this.setState(() => {
       return {query: value}
     })
-    this.search_books(value)
+    this.searchBooks(value)
   }
 
-  changeBookShelf = (books) => {
+//change book shelf
+  bookShelfChange = (books) => {
     let all_Books = this.props.myBooks
     for (let book of books) {
       book.shelf = "none"
@@ -38,13 +42,15 @@ class BookSearch extends Component {
     }
     return books
   }
-
-  search_books = (val) => {
+//search books and return results if available with images. 
+//If no book cover is available  do not return the book.
+//Change self
+  searchBooks = (val) => {
     if (val.length !== 0) {
       BooksAPI.search(val, 10).then((books) => {
         if (books.length > 0) {
           books = books.filter((book) => (book.imageLinks))
-          books = this.changeBookShelf(books)
+          books = this.bookShelfChange(books)
         }
         this.setState(() => {
           return {Books: books}
@@ -60,7 +66,11 @@ class BookSearch extends Component {
   }
 
   render() {
-    let result;
+   
+   //Conditional Rendering for 
+   //(a) results found and
+   //(b) results not found
+   let result;
     if (this.state.Books.length > 0) {
       result = this.state.Books.map((book, index) => (<Book book={book} key={index} onUpdate={(shelf) => {
         this.add_book(book, shelf)
