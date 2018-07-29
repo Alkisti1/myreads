@@ -45,9 +45,9 @@ class BookSearch extends Component {
 //search books and return results if available with images. 
 //If no book cover is available  do not return the book.
 //Change self
-  searchBooks = (val) => {
-    if (val.length !== 0) {
-      BooksAPI.search(val, 10).then((books) => {
+  searchBooks = (typed) => {
+    if (typed.length !== 0) {
+      BooksAPI.search(typed, 5).then((books) => {
         if (books.length > 0) {
           books = books.filter((book) => (book.imageLinks))
           books = this.bookShelfChange(books)

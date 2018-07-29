@@ -8,7 +8,7 @@ class Book extends Component {
     onUpdate: PropTypes.func.isRequired
   }
 //function for updating bookshelf
-  change_bookShelf = (e) => {
+  changeBookShelf = (e) => {
     this.props.onUpdate(e.target.value)
   }
 //render books
@@ -24,7 +24,7 @@ class Book extends Component {
               backgroundImage: `url("${book.imageLinks.thumbnail}")`
             }}></div>
             <div className="book-shelf-changer">
-              <select onChange={this.change_bookShelf} value={book.shelf}>
+              <select onChange={this.changeBookShelf} value={book.shelf}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
